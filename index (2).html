@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kotlete Jailbreak</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen;
+      background: radial-gradient(circle at top, #0b0b0f, #000);
+      color: #eaeaea;
+      overflow-x: hidden;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      letter-spacing: 4px;
+      margin: 0;
+      animation: glitch 2.5s infinite;
+    }
+
+    h1 span {
+      color: #ff4d4d;
+    }
+
+    p.subtitle {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 30px;
+      font-size: 0.9rem;
+      opacity: 0.6;
+      animation: float 2s infinite ease-in-out;
+    }
+
+    section {
+      padding: 100px 10%;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.03);
+      border-radius: 16px;
+      padding: 30px;
+      margin-top: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+    }
+
+    .log {
+      font-family: monospace;
+      font-size: 0.9rem;
+      background: #000;
+      border-radius: 12px;
+      padding: 20px;
+      color: #00ff9c;
+      overflow: hidden;
+    }
+
+    .log span {
+      display: block;
+      animation: type 0.6s steps(40) forwards;
+    }
+
+    footer {
+      padding: 40px;
+      text-align: center;
+      font-size: 0.85rem;
+      opacity: 0.5;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+      20% { text-shadow: -2px 0 red, 2px 0 cyan; }
+      40% { text-shadow: 2px 2px red, -2px -2px cyan; }
+      60% { text-shadow: -2px 2px red, 2px -2px cyan; }
+      80% { text-shadow: 2px 0 red, -2px 0 cyan; }
+      100% { text-shadow: none; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes type {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>K<span>OTLETE</span></h1>
+  <p class="subtitle">A modern iOS jailbreak exploiting the KOmER kernel bug</p>
+  <div class="scroll">▼ Scroll to explore ▼</div>
+</header>
+
+<section>
+  <h2>What is Kotlete?</h2>
+  <div class="card">
+    <p>
+      <strong>Kotlete</strong> is a next-generation jailbreak framework designed for modern iOS versions.
+      It leverages the <strong>KOmER</strong> vulnerability to gain early kernel execution,
+      disable mandatory code signing, and establish a persistent privileged runtime.
+    </p>
+    <p>
+      The project focuses on realism, low-level aesthetics, and a classic checkra1n / unc0ver vibe
+      while remaining fully modular and experimental.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>Kotlete Exploit Flow</h2>
+  <div class="card">
+    <ol>
+      <li><strong>Injector.db Initialization</strong><br />
+        Kotlete begins by injecting <code>Injector.db</code> into the device userland. This stage prepares memory layouts, allocates controlled objects, and primes the system for kernel interaction.
+      </li>
+      <li><strong>KOmER.dll Kernel Injection</strong><br />
+        Using the KOmER vulnerability, <code>KOmER.dll</code> is injected directly into <code>kernel_task</code>, granting arbitrary kernel read/write primitives and bypassing KASLR protections.
+      </li>
+      <li><strong>Payload Signing</strong><br />
+        The jailbreak environment is cryptographically staged and signed as <code>/bible/Poder.p7s</code>, emulating a trusted system component to satisfy AMFI validation.
+      </li>
+      <li><strong>System Virtualization</strong><br />
+        Kotlete virtualizes critical subsystems through <code>/bible/zupel.sys</code>, allowing runtime patching of security policies without persistent filesystem modification.
+      </li>
+      <li><strong>Runtime Data Injection</strong><br />
+        Finally, <code>/bible/fronk.dat</code> is loaded into memory, initializing hooks, entitlements, trust cache entries, and the user-facing jailbreak environment.
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <h2>Live Exploit Log</h2>
+  <div class="card log">
+    <span>[+] Resolving kernel slide...</span>
+    <span>[+] KOmER primitive acquired</span>
+    <span>[+] Writing to kernel_task</span>
+    <span>[+] Patching AMFI trust cache</span>
+    <span>[+] Injecting entitlements</span>
+    <span>[!] Triggering kernel panic (expected)</span>
+    <span>[✓] Device recovered successfully</span>
+  </div>
+</section>
+
+<section>
+  <h2>How Kotlete Works</h2>
+  <div class="card">
+    <p>
+      Kotlete follows a staged execution model designed to keep the system stable while progressively increasing control.
+      Each phase prepares the next, minimizing crashes and ensuring deterministic behavior across supported devices.
+    </p>
+    <h3>Memory Conditioning</h3>
+    <p>
+      Early execution focuses on allocator grooming and object lifetime control. By shaping kernel memory
+      through controlled allocations, Kotlete ensures predictable reuse patterns required by the KOmER primitive.
+    </p>
+    <h3>Privilege Transition</h3>
+    <p>
+      Once kernel read/write is established, Kotlete transitions execution context by modifying task ports,
+      credential structures, and code-signing flags. This enables privileged operations without disrupting userland.
+    </p>
+    <h3>Security Policy Relaxation</h3>
+    <p>
+      AMFI, sandbox profiles, and trust caches are adjusted in-memory. Rather than blanket disabling protections,
+      Kotlete applies targeted patches that allow unsigned code and extended entitlements while preserving system services.
+    </p>
+    <h3>Persistence Model</h3>
+    <p>
+      The runtime environment is initialized from preloaded data structures, avoiding permanent filesystem changes.
+      Hooks and policies are re-applied on demand, enabling rapid recovery after respring or reboot cycles.
+    </p>
+    <h3>Stability & Recovery</h3>
+    <p>
+      Controlled fault conditions are used to validate patch coverage and restore execution flow.
+      If unexpected states are detected, Kotlete reinitializes critical components and safely resumes operation.
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>Execution Timeline</h2>
+  <div class="card log">
+    <span>[stage 0] allocator grooming complete</span>
+    <span>[stage 1] Injector.db mapped into process space</span>
+    <span>[stage 2] KOmER.dll attached to kernel_task</span>
+    <span>[stage 3] credentials elevated</span>
+    <span>[stage 4] AMFI policy updated</span>
+    <span>[stage 5] /bible/Poder.p7s validated</span>
+    <span>[stage 6] /bible/zupel.sys active</span>
+    <span>[stage 7] /bible/fronk.dat loaded</span>
+    <span>[✓] system state: operational</span>
+  </div>
+</section>
+
+<section>
+  <h2>Philosophy</h2>
+  <div class="card">
+    <p>
+      Kotlete prioritizes precision over brute force. The goal is to interact with iOS internals
+      in a way that mirrors native behavior, reducing anomalies and maintaining a clean execution surface.
+    </p>
+  </div>
+</section>
+
+<footer>
+  Kotlete Jailbreak © Experimental Research Build<br />
+  Not affiliated with Apple Inc.
+</footer>
+
+</body>
+</html>
